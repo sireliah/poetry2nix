@@ -62,6 +62,10 @@ self: super:
     }
   );
 
+  aws-xray-sdk = super.aws-xray-sdk.overridePythonAttrs (old: {
+    propagatedBuildInputs = old.propagatedBuildInputs ++ [ self.setuptools ];
+  });
+
   bcrypt = super.bcrypt.overridePythonAttrs (
     old: {
       buildInputs = old.buildInputs ++ [ pkgs.libffi ];
